@@ -4,13 +4,10 @@ namespace Solutions.Services
 {
     public class RockPaperScissorsStrategyMachine : IRockPaperScissorsStrategyMachine
     {
-        public int CalculateScore(string[] strategyGuide)
+        public int CalculateScore(List<RockPaperScissorsRound> rounds)
         {
-            List<RockPaperScissorsRound> rounds = new List<RockPaperScissorsRound>();
-            foreach (var strategy in strategyGuide)
+            foreach (var round in rounds)
             {
-                RockPaperScissorsRound round = new(strategy[0], strategy[2]);
-
                 if (CalculateWinner(round).Equals("me"))
                 {
                     round.Score = 6 + round.MyHand switch
@@ -41,7 +38,6 @@ namespace Solutions.Services
                         _ => 0
                     };
                 }
-                rounds.Add(round);
             }
 
             var score = 0;
