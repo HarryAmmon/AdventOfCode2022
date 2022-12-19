@@ -54,7 +54,7 @@ namespace Solutions
             {
                 duplicate = char.ToUpper(duplicate);
             }
-            var positionInAlphabet = Array.FindIndex(Alphabet.LatinAlphabet, x => x == duplicate);
+            var positionInAlphabet = Array.FindIndex(Alphabet.LatinAlphabet.ToCharArray(), x => x == duplicate);
             priority += positionInAlphabet + 1;
             return priority;
         }
