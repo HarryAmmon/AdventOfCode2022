@@ -1,4 +1,4 @@
-namespace Solutions
+namespace Solutions.Constants
 {
     public static class Alphabet
     {

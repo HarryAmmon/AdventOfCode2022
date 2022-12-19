@@ -1,5 +1,7 @@
 using AdventOfCodeCore;
 using Solutions.CollectionExtensions;
+using Solutions.Constants;
+using Solutions.Models;
 
 namespace Solutions
 {
@@ -21,7 +23,24 @@ namespace Solutions
 
         public int Part2(string[] fileContent)
         {
-            throw new NotImplementedException();
+            var totalPriority = 0;
+            List<ElfGroup> elfGroups = new();
+            for (int i = 0; i < fileContent.Length; i += 3)
+            {
+                elfGroups.Add(new ElfGroup
+                {
+                    BackPackOne = fileContent[i].ToCharArray(),
+                    BackPackTwo = fileContent[i + 1].ToCharArray(),
+                    BackPackThree = fileContent[i + 2].ToCharArray()
+                });
+            }
+            foreach (var elfGroup in elfGroups)
+            {
+                var intersect = elfGroup.BackPackOne.Intersect(elfGroup.BackPackTwo);
+                var duplicate = elfGroup.BackPackThree.Intersect(intersect).First();
+                totalPriority += GetPriority(duplicate);
+            }
+            return totalPriority;
         }
 
         public int GetPriority(char duplicate)
