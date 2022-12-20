@@ -17,7 +17,7 @@ namespace Solutions
             {
                 instructions.Add(CraneInstructionFactory.Create(fileContent[i]));
             }
-            var craneResult = crane.MoveCrates(instructions);
+            var craneResult = crane.MoveCrates9000(instructions);
             var result = "";
             foreach (var stack in craneResult.CrateRow)
             {
@@ -31,7 +31,24 @@ namespace Solutions
 
         public string Part2(string[] fileContent)
         {
-            throw new NotImplementedException();
+            var depot = new CrateDepot(fileContent);
+
+            var crane = new GiantCargoCrane(depot);
+            List<CraneInstruction> instructions = new();
+            for (int i = 10; i < fileContent.Length; i++)
+            {
+                instructions.Add(CraneInstructionFactory.Create(fileContent[i]));
+            }
+            var craneResult = crane.MoveCrates9001(instructions);
+            var result = "";
+            foreach (var stack in craneResult.CrateRow)
+            {
+                if (stack.TryPeek(out var peekResult))
+                {
+                    result = result + peekResult;
+                }
+            }
+            return result;
         }
     }
 }
