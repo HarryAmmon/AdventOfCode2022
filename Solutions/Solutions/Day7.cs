@@ -1,4 +1,5 @@
 using AdventOfCodeCore;
+using Solutions.Services;
 
 namespace Solutions
 {
@@ -6,10 +7,13 @@ namespace Solutions
     {
         public int Part1(string[] fileContent)
         {
-            // Run commands to create a file tree
-            // Recursively navigate tree to calculate directory file size
-            // win? 
-            return 0;
+            var fileSystem = new FileSystem();
+            var values = new List<int>();
+            var system = new CommunicationSystem(fileSystem, values);
+            var fileTree = system.BuildFileTree(fileContent);
+            system.CalculateDirectorySize(fileTree);
+
+            return values.Sum();
         }
 
         public int Part2(string[] fileContent)

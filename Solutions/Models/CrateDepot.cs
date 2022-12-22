@@ -10,7 +10,7 @@ namespace Solutions.Models
         {
             var rowNumbers = fileContent[8].Split(' ', StringSplitOptions.RemoveEmptyEntries);
             CrateRow = new List<Stack<char>>();
-            foreach (string number in rowNumbers)
+            foreach (var number in rowNumbers)
             {
                 CrateRow.Add(new Stack<char>());
             }

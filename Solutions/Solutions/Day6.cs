@@ -8,14 +8,18 @@ namespace Solutions
         public int Part1(string[] fileContent)
         {
             var dataStream = fileContent[0].ToCharArray();
-            var system = new CommunicationSystem();
+            var fileSystem = new FileSystem();
+            var list = new List<int>();
+            var system = new CommunicationSystem(fileSystem, list);
             return system.GetStartOfPacketMarker(dataStream);
         }
 
         public int Part2(string[] fileContent)
         {
             var dataStream = fileContent[0].ToCharArray();
-            var system = new CommunicationSystem();
+            var fileSystem = new FileSystem();
+            var list = new List<int>();
+            var system = new CommunicationSystem(fileSystem, list);
             return system.GetStartOfMessageMarker(dataStream);
         }
     }
